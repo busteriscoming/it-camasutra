@@ -6,22 +6,30 @@ const MyPosts = (props) => {
   let postElement = props.state.map((post) => (
     <Post id={post.id} message={post.message} likes={post.likesCount} />
   ));
-  console.log(props);
   let newPostElement = React.createRef();
 
   const addPostMessage = function () {
-    let textArea = newPostElement.current.value;
-    props.addPost(textArea);
-    console.log(props.state);
+    props.addPost();
   };
 
+  const chanePostMessage = function () {
+    let textArea = newPostElement.current.value;
+    console.log(textArea);
+    console.log(textArea[textArea.length - 1]);
+    props.changePost(textArea);
+    console.log(props.state);
+  };
   return (
     <div>
       <div className={css.postsBlock}>
         My posts
         <div>
           <div>
-            <textarea ref={newPostElement}></textarea>
+            <textarea
+              value={props.newPostText}
+              onChange={chanePostMessage}
+              ref={newPostElement}
+            />
           </div>
           <div>
             <button onClick={addPostMessage}>Add post</button>

@@ -7,8 +7,7 @@ const Dialogs = (props) => {
   let dialogsAndMessages = [];
 
   let messageText = React.useRef();
-
-  let dialogsElements = props.state.dialogsData.map((dialog) => (
+  let dialogsElements = props.state.dialogsPage.dialogsData.map((dialog) => (
     <DialogItem id={dialog.id} name={dialog.name} text={dialog.text} />
   ));
   let showText = function () {

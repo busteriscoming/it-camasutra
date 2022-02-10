@@ -14,10 +14,8 @@ const MyPosts = (props) => {
 
   const chanePostMessage = function () {
     let textArea = newPostElement.current.value;
-    console.log(textArea);
-    console.log(textArea[textArea.length - 1]);
+    console.log(props);
     props.changePost(textArea);
-    console.log(props.state);
   };
   return (
     <div>

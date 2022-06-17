@@ -1,4 +1,11 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 let rerenderEntireTree = () => {};
+
+
+
 
 let store = {
   state: {
@@ -11,10 +18,7 @@ let store = {
       ],
       newPostText: "it-camasutra",
     },
-    getState() {
-      console.log(this.state);
-      return this.state;
-    },
+
     dialogsPage: {
       dialogsData: [
         { id: 523848, name: "Dimych", text: "Hi" },
@@ -24,15 +28,17 @@ let store = {
         { id: 168246, name: "Viktor", text: "Viktor" },
         { id: 163243, name: "Valeriy", text: "Valeriy" },
       ],
-      // messageData: [
-      //   { id: 523848, text: "Hi" },
-      //   { id: 164222, text: "How is your it camasutra" },
-      //   { id: 166435, text: "Yo" },
-      //   { id: 235842, text: "Sasha" },
-      //   { id: 168246, text: "Viktor" },
-      //   { id: 163243, text: "Valeriy" },
-      // ],
+      messageData: [
+        { id: 523848, text: "Hi" },
+        { id: 164222, text: "How is your it camasutra" },
+        { id: 166435, text: "Yo" },
+        { id: 235842, text: "Sasha" },
+        { id: 168246, text: "Viktor" },
+        { id: 163243, text: "Valeriy" },
+      ],
+      newMessageBody: "",
     },
+
     sidebar: {
       friends: [
         { id: 523848, name: "Dimych" },
@@ -44,29 +50,45 @@ let store = {
       ],
     },
   },
-  addPost() {
-    let newPost = {
-      id: 5,
-      message: this.state.profilePage.newPostText,
-      likesCount: 0,
-    };
-    this.state.profilePage.postData.push(newPost);
-    this.state.profilePage.newPostText = "";
-    rerenderEntireTree(this.state);
-  },
-  changePost(newPostMessage) {
-    // let newPost = {
-    //   id: 5,
-    //   message: newPostMessage,
-    //   likesCount: 0,
-    // };
-    this.state.profilePage.newPostText = newPostMessage;
-    rerenderEntireTree(this.state);
+
+  getState() {
+    return this.state;
   },
   subscribe(observer) {
     rerenderEntireTree = observer;
   },
-  dispatch() {},
+  dispatch(action) {
+    this.state.profilePage = profileReducer(this.state.profilePage, action)
+    this.state.dialogsPage = dialogsReducer(this.state.dialogsPage, action)
+    this.state.sidebar = sidebarReducer(this.state.sidebar, action)
+    rerenderEntireTree(this.state);
+    
+    // if (action.type === ADD_POST) {
+    //   let newPost = {
+    //     id: 5,
+    //     message: this.state.profilePage.newPostText,
+    //     likesCount: 0,
+    //   };
+    //   this.state.profilePage.postData.push(newPost);
+    //   this.state.profilePage.newPostText = "";
+    //   rerenderEntireTree(this.state);
+    // } else if (action.type === CHANGE_POST) {
+    //   this.state.profilePage.newPostText = action.newPostMessage;
+    //   rerenderEntireTree(this.state);
+    // } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+    //   this.state.dialogsPage.newMessageBody = action.body;
+    //   rerenderEntireTree(this.state);
+    // } else if (action.type === SEND_MESSAGE) {
+    //   let body = this.state.dialogsPage.newMessageBody;
+    //   this.state.dialogsPage.newMessageBody = "";
+    //   this.state.dialogsPage.dialogsData.push({
+    //     id: 163243,
+    //     name: "Dmytro",
+    //     text: body,
+    //   });
+
+    // }
+  },
 };
 
 export default store;

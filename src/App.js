@@ -11,6 +11,7 @@ import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
+
   return (
     <div className="app-wrapper">
       <Header />
@@ -18,14 +19,13 @@ const App = (props) => {
       {/* <Profile /> */}
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/dialogs" element={<Dialogs state={props.state} />} />
+          <Route path="/dialogs" element={<Dialogs store={props.store} />} />
           <Route
             path="/profile"
             element={
               <Profile
                 newPostText={props.state.profilePage.newPostText}
-                changePost={props.changePost}
-                addPost={props.addPost}
+                dispatch={props.dispatch}
                 state={props.state.profilePage}
               />
             }

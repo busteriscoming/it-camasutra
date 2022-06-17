@@ -1,0 +1,29 @@
+.friendsBlock {
+  padding-top: 20px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.friendsBlock img {
+  width: 35px;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.friendsName {
+  padding-left: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.friendsName:hover,
+.friendsName:active,
+.friendsName:focus {
+  color: thistle;
+}
+.active {
+  padding-left: 5px;
+
+  color: gold;
+  text-decoration: none;
+}

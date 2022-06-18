@@ -13,13 +13,14 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
   const addPostMessage = function () {
-    props.dispatch(addPostActionCreater());
+    // props.dispatch(addPostActionCreater());
+    props.addPostMessage()
   };
 
-  const chanePostMessage = function () {
-    console.log(props);
+  const changePostMessage = function () {
     let textArea = newPostElement.current.value;
-    props.dispatch(updateNewPostTextActionCreater(textArea));
+    console.log(props);
+    props.updateNewPostText(textArea)
   };
   return (
     <div>
@@ -29,7 +30,7 @@ const MyPosts = (props) => {
           <div>
             <textarea
               value={props.newPostText}
-              onChange={chanePostMessage}
+              onChange={changePostMessage}
               ref={newPostElement}
             />
           </div>

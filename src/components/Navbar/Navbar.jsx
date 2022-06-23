@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import Friends from "../Friends/Friends";
 import css from "./Navbar.module.css";
 import FriendsBar from "./FriendsBar";
+import store from './../../redux/state';
 
 const isActiveClass = (navData) => (navData.isActive ? css.active : css.item);
 
-const Navbar = (props) => {
-  let friendsElements = props.state.friends.map((friend) => (
+const Navbar = () => {
+  let friendsElements = store.getState().sidebar.friends.map((friend) => (
     <FriendsBar name={friend.name} id={friend.id} />
   ));
 
@@ -37,6 +38,11 @@ const Navbar = (props) => {
         <div>
           <NavLink className={isActiveClass} to="/settings">
             Settings
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className={isActiveClass} to="/users">
+            Users
           </NavLink>
         </div>
         <div>

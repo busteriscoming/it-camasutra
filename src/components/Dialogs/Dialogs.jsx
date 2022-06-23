@@ -12,10 +12,10 @@ const Dialogs = (props) => {
   let state = props.dialogsPage;
   let messageText = React.useRef();
   let dialogsElements = state.dialogsData.map((dialog) => (
-    <DialogItem id={dialog.id} name={dialog.name} text={dialog.text} />
+    <DialogItem id={dialog.id} name={dialog.name} key={dialog.id} text={dialog.text} />
   ));
   let messageElements = state.messageData.map((m) => (
-    <Message message={m.text} />
+    <Message message={m.text} id={m.id}/>
   ));
   let newMessageBody = state.newMessageBody;
 
